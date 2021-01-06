@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100vw;   /*  1vw=可视窗口宽度1% */
+    height: 100vh;  /*  1vh=可视窗口高度1% */
+
+    background-color: black;
+}
+
+.container a {
+    position: relative;
+    display: block;
+    width: 140px;
+    height: 60px;
+
+    margin: 40px;
+
+    /* a中内容居中 */
+    line-height: 60px;
+    text-align: center;
+
+    color: aqua;
+    font-size: 20px;
+    text-decoration: none;
+
+    /* a元素渐变 */
+    transition: all 0.3s ease-in-out;
+
+    /* 使用变量：var(i) */
+    /* filter: hue-rotate()：色调旋转滤镜 */
+    filter: hue-rotate(calc(var(--i) * 60deg));
+}
+
+/* 构造边角图形 */
+.container a::before,
+.container a::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid aqua;
+
+    /* 边角图形渐变 */
+    transition: all .3s ease-in-out;
+}
+
+/* 调整图形形状 */
+.container a::before {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.container a::after {
+    bottom: 0;
+    right: 0;
+    border-left: 0;
+    border-top: 0;
+}
+
+/* 鼠标移动事件 */
+.container a:hover {
+    background-color: aqua;
+    color: black;   /* 字体颜色 */
+
+    /* 发光效果和阴影 */
+    box-shadow: 0 0 50px aqua;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0,0,0,0.3));     /* 倒影 */
+    transition-delay: 0.1s;
+}
+
+
+.container a:hover::before,
+.container a:hover::after {
+    width: 138px;
+    height: 58px;
+
+    /* 边角图形不延迟直接渐变 */
+    transition-delay: 0s;
+}
